@@ -1,0 +1,13 @@
+build --cxxopt=--std=c++17
+build --copt=-I.
+build -c opt
+
+# Make Bazel print out all options from rc files.
+build --announce_rc
+build --symlink_prefix=./build/bazel-
+
+# Remote caching with local builds.
+build:remote_cache --remote_instance_name=projects/lynx/default_instance
+build:remote_cache --remote_upload_local_results
+# workers:
+build:remote_cache --remote_download_toplevel
